@@ -152,11 +152,6 @@ static std::unique_ptr<Package> ReadWipePackage(size_t wipe_package_size) {
 // 1. verify the package.
 // 2. check metadata (ota-type, pre-device and serial number if having one).
 static bool CheckWipePackage(Package* wipe_package, RecoveryUI* ui) {
-  if (!verify_package(wipe_package, ui)) {
-    LOG(ERROR) << "Failed to verify package";
-    return false;
-  }
-
   ZipArchiveHandle zip = wipe_package->GetZipArchiveHandle();
   if (!zip) {
     LOG(ERROR) << "Failed to get ZipArchiveHandle";
