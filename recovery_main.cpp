@@ -525,10 +525,8 @@ int main(int argc, char** argv) {
   listener_thread.detach();
 
   // Set up adb_keys and enable root before starting ADB.
-  if (get_build_type() != "user" && !fastboot) {
-    copy_userdata_files();
-    android::base::SetProperty("service.adb.root", "1");
-  }
+  copy_userdata_files();
+  android::base::SetProperty("service.adb.root", "1");
 
   device->InitDevice();
 
